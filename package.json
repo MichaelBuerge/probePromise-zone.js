@@ -1,0 +1,19 @@
+{
+  "name": "probepromise-zone.js",
+  "version": "0.0.1",
+  "description": "Promise probing (for zone.js debugging).",
+  "main": "probepromise.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MichaelBuerge/probePromise-zone.js.git"
+  },
+  "author": "mib@orino.ch",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MichaelBuerge/probePromise-zone.js/issues"
+  },
+  "homepage": "https://github.com/MichaelBuerge/probePromise-zone.js#readme"
+}
