@@ -49,16 +49,17 @@ window['probePromise'] = (function() {
     if (probe.NativePromise.name != 'Promise' &&
         probe.NativePromise.toString().indexOf('[native code]') == -1) {
       log('!!! Supposed native Promise is not native.');
+      log('NativePromise.toString(): ' + probe.NativePromise.toString());
     }
     if (probe.zoneJsPresent &&
         probe.ZoneAwarePromise.name != 'ZoneAwarePromise') {
       log('!!! Expected window.Promise to be ZoneAwarePromise.');
     }
-    log('promise is of NativePromise:    ' + isNativePromise(probe.promise));
-    log('promise is of ZoneAwarePromise: ' + isZoneAwarePromise(probe.promise));
+    log('promise instanceof NativePromise:    ' + isNativePromise(probe.promise));
+    log('promise instanceof ZoneAwarePromise: ' + isZoneAwarePromise(probe.promise));
     
-    log('fetchResult is of NativePromise:    ' + isNativePromise(probe.fetchResult));
-    log('fetchResult is of ZoneAwarePromise: ' + isZoneAwarePromise(probe.fetchResult));
+    log('fetchResult instanceof NativePromise:    ' + isNativePromise(probe.fetchResult));
+    log('fetchResult instanceof ZoneAwarePromise: ' + isZoneAwarePromise(probe.fetchResult));
     if (!isNativePromise(probe.fetchResult) && !isZoneAwarePromise(probe.fetchResult)) {
       log('!!! fetchResult is neither instance of NativePromise nor ZoneAwarePromise');
       var Ctor = probe.fetchResult.constructor;
