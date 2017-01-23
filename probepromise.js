@@ -33,6 +33,13 @@ window['probePromise'] = (function() {
     probe.promise = new Promise(() => null);
     probe.fetchResult = window['fetch']('');
 
+    probe.fetchResult.then(function (res) {
+      probe.textResult = res.text();
+      probe.textResult.then(function(textRes) {
+        console.log('--- possibly out of order ---')
+        logProbe(probe);
+      });
+    });
     return probe;
   }
 
@@ -67,11 +74,20 @@ window['probePromise'] = (function() {
       log('!!! fetchResult.constructor.toString(): ' + Ctor.toString());
     }
 
+    log('textResult instanceof NativePromise:    ' + isNativePromise(probe.textResult));
+    log('textResult instanceof ZoneAwarePromise: ' + isZoneAwarePromise(probe.textResult));
+    if (!isNativePromise(probe.textResult) && !isZoneAwarePromise(probe.textResult)) {
+      log('!!! textResult is neither instance of NativePromise nor ZoneAwarePromise');
+      var Ctor = probe.textResult.constructor;
+      log('!!! textResult.constructor.name: ' + Ctor.name);
+      log('!!! textResult.constructor.toString(): ' + Ctor.toString());
+    }
+
     console.log(out.join('\n'));    
   }
 
   return function(tag) {
     var probe = gatherProbe(tag);
-    logProbe(probe);
+    // logProbe(probe);
   }
 })();
